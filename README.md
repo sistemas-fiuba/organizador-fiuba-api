@@ -24,3 +24,12 @@ pip install -r requirements.txt
 ```
 bash run.sh
 ```
+
+### Quickstart (must have python)
+```
+git clone https://github.com/sistemas-fiuba/organizador-fiuba-api.git development
+virtualenv .env
+source .env/bin/activate
+pip install -r requirements.txt
+bash run.py 
+```
