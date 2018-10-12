@@ -3,6 +3,11 @@ from flask import jsonify
 from api import app
 
 
+@app.route('/', methods=['GET'])
+def not_a_teapot():
+    return "I'm not a teapot"
+
+
 @app.route('/api', methods=['GET'])
 def api_info():
     """Welcome message for the API."""
