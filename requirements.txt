@@ -1,5 +1,8 @@
 # app
 flask
+flask-sqlalchemy
+psycopg2
+marshmallow
 
 # Testing
 requests
