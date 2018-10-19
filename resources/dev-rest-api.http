@@ -9,3 +9,18 @@ Accept: */*
 Cache-Control: no-cache
 
 ###
+
+POST http://localhost:5000/api/v1/professors/
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+"name": "Profesor de prueba"
+}
+###
+
+
+GET http://localhost:5000/healthcheck
+
+###

@@ -6,5 +6,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-from .professor import Professor,ProfessorSchema
-from .course import Course,CourseSchema
+
+class BaseModel(db.Model):
+    """Base data model for all objects"""
+    __abstract__ = True
+    # define here __repr__ and json methods or any common method
+    # that you need for all your models
+
+
+from .professor import Professor, ProfessorSchema
+from .course import Course, CourseSchema

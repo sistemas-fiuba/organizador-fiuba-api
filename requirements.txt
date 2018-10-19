@@ -3,6 +3,9 @@ flask
 flask-sqlalchemy
 psycopg2
 marshmallow
+healthcheck
+flask-migrate
+flask-script
 
 # Testing
 requests

@@ -3,7 +3,6 @@ import datetime
 
 from marshmallow import fields, Schema
 
-from professor import ProfessorSchema
 from api.models import db
 
 
@@ -23,8 +22,18 @@ class Course(db.Model):
     time = db.Column(db.String(128), nullable=False)
     professor_id = db.Column(db.Integer, nullable=False)
     # professors = db.relationship('Professor', backref='course', lazy=True)
-    created_at = db.Column(db.DateTime)
-    modified_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
+    modified_at = db.Column(db.DateTime, default=datetime.datetime.now())
+
+    def __init__(self, data):
+        # self.id = data.get('id')
+        self.subject_id = data.get('subject_id')
+        self.classroom = data.get('classroom')
+        self.day = data.get('day')
+        self.time = data.get('time')
+        self.professor_id = data.get('professor_id')
+        self.created_at = datetime.datetime.utcnow()
+        self.modified_at = datetime.datetime.utcnow()
 
     def save(self):
         db.session.add(self)
@@ -47,6 +56,7 @@ class Course(db.Model):
     @staticmethod
     def get_all_courses():
         return Course.query.all()
+
 
 class CourseSchema(Schema):
     id = fields.Int(dump_only=True)

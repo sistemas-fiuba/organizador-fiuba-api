@@ -2,22 +2,25 @@
 import datetime
 
 from marshmallow import fields, Schema
-from api.models import db
+from api.models import db, BaseModel
 
 
-class Professor(db.Model):
+class Professor(BaseModel):
     """
     Professor Model
     """
 
     # table name
-    __tablename__ = 'course'
-    __abstract__ = True
+    __tablename__ = 'professor'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
-    created_at = db.Column(db.DateTime)
-    modified_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
+    modified_at = db.Column(db.DateTime, default=datetime.datetime.now())
+
+    def __init__(self, data):
+        # self.id = data.get('id')
+        self.name = data.get('name')
 
     def save(self):
         db.session.add(self)
@@ -36,4 +39,6 @@ class Professor(db.Model):
 
 class ProfessorSchema(Schema):
     id = fields.Int(dump_only=True)
-    title = fields.Str(required=True)
+    name = fields.Str(required=True)
+    created_at = fields.DateTime(dump_only=True)
+    modified_at = fields.DateTime(dump_only=True)
